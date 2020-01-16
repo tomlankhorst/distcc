@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
+ENV DISTCCD_PATH=/usr/bin
 # ENV OPTIONS --allow 1.1.1.1 --allow 2.2.2.2
 
 RUN apt-get update && apt-get install -y gpg wget && rm -rf /var/lib/apt/lists/*
@@ -28,5 +29,5 @@ EXPOSE 3633
 
 USER distccd
 
-ENTRYPOINT /usr/bin/distccd --no-detach --daemon --stats --log-level info --log-stderr $OPTIONS
+ENTRYPOINT /usr/bin/distccd --verbose --no-detach --daemon --stats --log-level debug --log-stderr $OPTIONS
 
