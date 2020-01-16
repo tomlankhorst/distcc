@@ -25,9 +25,11 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 EXPOSE 3632
+# Statistics port (optional)
 EXPOSE 3633
 
 USER distccd
 
-ENTRYPOINT /usr/bin/distccd --verbose --no-detach --daemon --stats --log-level debug --log-stderr $OPTIONS
+# --verbose is like --log-level debug, both here for clarity's sake
+ENTRYPOINT /usr/bin/distccd --verbose --no-detach --daemon --log-level debug --log-stderr $OPTIONS
 
